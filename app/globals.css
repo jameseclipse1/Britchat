@@ -1,26 +1,215 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --ink: #16202e;
+  --muted: #5b6358;
+  --paper: #eef1e9;
+  --surface: #ffffff;
+  --surface-2: #f5f6f0;
+  --line: #d8dacc;
+  --accent: #d98a22;
+  --accent-ink: #16202e;
+  --pitch: #3f6b52;
+  --pitch-ink: #ffffff;
+  --badge-red: #b8382f;
+  --badge-red-ink: #ffffff;
+  --good: #2e7d4f;
+  --good-bg: #e4f1e8;
+  --bad: #b23a3a;
+  --bad-bg: #f7e6e4;
+  --shadow: rgba(22, 32, 46, 0.1);
+  --focus: #2e6fa3;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --ink: #edefe6;
+    --muted: #a6ada0;
+    --paper: #111720;
+    --surface: #1a2330;
+    --surface-2: #212b39;
+    --line: #2c3745;
+    --accent: #e9a63c;
+    --accent-ink: #16202e;
+    --pitch: #5b8f70;
+    --pitch-ink: #0d1712;
+    --badge-red: #d9584e;
+    --badge-red-ink: #1a0c0a;
+    --good: #5fbe85;
+    --good-bg: #1b3327;
+    --bad: #e4726b;
+    --bad-bg: #3a2020;
+    --shadow: rgba(0, 0, 0, 0.45);
+    --focus: #7fb4e0;
   }
 }
 
+* {
+  box-sizing: border-box;
+}
+
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+.display {
+  font-family: var(--font-display), system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px 18px;
+}
+
+.chip {
+  flex: 0 0 auto;
+  padding: 6px 13px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.chip.active {
+  background: var(--pitch);
+  color: var(--pitch-ink);
+  border-color: var(--pitch);
+}
+
+.badge-club {
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: var(--badge-red);
+  color: var(--badge-red-ink);
+}
+
+.btn {
+  padding: 12px 20px;
+  border-radius: 10px;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+.btn.ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+.btn.accent {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+.btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.choice {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 13px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 14.5px;
+  margin-bottom: 9px;
+  cursor: pointer;
+}
+.choice:hover:not(:disabled) {
+  border-color: var(--pitch);
+}
+.choice.correct {
+  background: var(--good-bg);
+  border-color: var(--good);
+  color: var(--good);
+  font-weight: 600;
+}
+.choice.incorrect {
+  background: var(--bad-bg);
+  border-color: var(--bad);
+  color: var(--bad);
+  font-weight: 600;
+}
+.choice:disabled {
+  cursor: default;
+}
+
+.meter {
+  height: 6px;
+  background: var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.meter-fill {
+  height: 100%;
+  background: var(--pitch);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+input[type="text"],
+input[type="password"] {
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 15px;
+  width: 100%;
+}
+
+table.league {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+table.league th,
+table.league td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+table.league th {
+  font-family: var(--font-display), system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 11px;
+  color: var(--muted);
 }
