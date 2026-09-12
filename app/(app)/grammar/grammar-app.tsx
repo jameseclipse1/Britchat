@@ -24,6 +24,7 @@ export default function GrammarApp({ initialProgress }: { initialProgress: Progr
 
   return (
     <section className="flex flex-col gap-3">
+      <p className="eyebrow">Grammar trainer — 18 modules, pick one</p>
       {Object.entries(QUIZZES).map(([id, quiz]) => {
         const rec = progress[id];
         return (

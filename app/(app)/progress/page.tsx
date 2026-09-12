@@ -29,6 +29,7 @@ export default async function ProgressPage() {
 
   return (
     <section>
+      <p className="eyebrow">Your progress</p>
       <div className="grid grid-cols-2 gap-2.5 mb-5">
         <StatTile num={`${started}/${topicIds.length}`} label="Topics started" />
         <StatTile num={`${avgPct}%`} label="Best average score" />
@@ -53,7 +54,7 @@ export default async function ProgressPage() {
 
 function StatTile({ num, label }: { num: string; label: string }) {
   return (
-    <div className="card">
+    <div className="card stat-tile pl-4">
       <div className="display text-3xl tabular" style={{ color: "var(--pitch)" }}>
         {num}
       </div>

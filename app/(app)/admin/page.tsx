@@ -33,12 +33,41 @@ export default async function AdminPage() {
 
   rows.sort((a, b) => b.topicsCompleted - a.topicsCompleted || b.avgPct - a.avgPct);
 
+  const teamAvgPct = rows.length
+    ? Math.round(rows.reduce((sum, r) => sum + r.avgPct, 0) / rows.length)
+    : 0;
+  const topChatter = rows[0]?.display_name ?? "-";
+
   return (
     <section className="flex flex-col gap-5">
       <div>
-        <h2 className="text-lg mb-2" style={{ textTransform: "none", letterSpacing: 0 }}>
-          League table
-        </h2>
+        <p className="eyebrow">Admin — team overview</p>
+        <div className="grid grid-cols-3 gap-2.5 mb-4">
+          <div className="card stat-tile pl-4">
+            <div className="display text-3xl tabular" style={{ color: "var(--pitch)" }}>
+              {rows.length}
+            </div>
+            <div className="text-[11.5px] uppercase tracking-wide mt-0.5" style={{ color: "var(--muted)" }}>
+              Chatters
+            </div>
+          </div>
+          <div className="card stat-tile pl-4">
+            <div className="display text-3xl tabular" style={{ color: "var(--pitch)" }}>
+              {teamAvgPct}%
+            </div>
+            <div className="text-[11.5px] uppercase tracking-wide mt-0.5" style={{ color: "var(--muted)" }}>
+              Team avg score
+            </div>
+          </div>
+          <div className="card stat-tile pl-4">
+            <div className="display text-xl tabular truncate" style={{ color: "var(--pitch)" }}>
+              {topChatter}
+            </div>
+            <div className="text-[11.5px] uppercase tracking-wide mt-0.5" style={{ color: "var(--muted)" }}>
+              Top of the table
+            </div>
+          </div>
+        </div>
         <div className="card overflow-x-auto">
           <table className="league">
             <thead>

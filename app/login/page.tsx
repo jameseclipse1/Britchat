@@ -5,7 +5,7 @@ export default function LoginPage() {
     <main className="min-h-screen flex items-center justify-center p-6">
       <div
         className="card w-full max-w-sm text-center"
-        style={{ boxShadow: "0 8px 24px var(--shadow)" }}
+        style={{ boxShadow: "0 20px 60px var(--shadow)" }}
       >
         <div
           className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full text-xl font-bold display"
@@ -13,7 +13,10 @@ export default function LoginPage() {
         >
           BC
         </div>
-        <h1 className="text-2xl mb-1">BritChat</h1>
+        <h1 className="text-3xl mb-1.5">BritChat</h1>
+        <p className="tagline mb-5">
+          Chat like a <b>Brit</b>. 🇬🇧
+        </p>
         <p className="text-sm mb-5" style={{ color: "var(--muted)" }}>
           Sign in with the username and password your manager set up for you.
         </p>

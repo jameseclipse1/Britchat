@@ -26,6 +26,7 @@ export default function DictionaryApp() {
 
   return (
     <section>
+      <p className="eyebrow">Dictionary — slang in, meaning out (or the other way round)</p>
       <input
         type="text"
         placeholder="Search a word, e.g. 'good', 'tired', 'peng', 'PPV'..."

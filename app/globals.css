@@ -19,18 +19,20 @@
   --bad-bg: #f7e6e4;
   --shadow: rgba(22, 32, 46, 0.1);
   --focus: #2e6fa3;
+  --accent-glow: rgba(217, 138, 34, 0.12);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --ink: #edefe6;
     --muted: #a6ada0;
-    --paper: #111720;
-    --surface: #1a2330;
-    --surface-2: #212b39;
+    --paper: #0c1119;
+    --surface: #19222f;
+    --surface-2: #202a3a;
     --line: #2c3745;
     --accent: #e9a63c;
     --accent-ink: #16202e;
+    --accent-glow: rgba(233, 166, 60, 0.18);
     --pitch: #5b8f70;
     --pitch-ink: #0d1712;
     --badge-red: #d9584e;
@@ -39,7 +41,7 @@
     --good-bg: #1b3327;
     --bad: #e4726b;
     --bad-bg: #3a2020;
-    --shadow: rgba(0, 0, 0, 0.45);
+    --shadow: rgba(0, 0, 0, 0.5);
     --focus: #7fb4e0;
   }
 }
@@ -58,6 +60,8 @@ body {
   margin: 0;
   font-family: var(--font-body), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+  background-image: radial-gradient(ellipse 900px 420px at 50% -10%, var(--accent-glow), transparent);
+  background-repeat: no-repeat;
 }
 
 h1,
@@ -83,6 +87,41 @@ h3,
   border: 1px solid var(--line);
   border-radius: 12px;
   padding: 16px 18px;
+  box-shadow: 0 1px 2px var(--shadow);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display), system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--accent);
+  margin: 0 0 6px;
+}
+.eyebrow::before {
+  content: "";
+  width: 14px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+  flex: 0 0 auto;
+}
+
+.tagline {
+  font-style: italic;
+  color: var(--muted);
+  font-size: 13.5px;
+  letter-spacing: 0.01em;
+}
+.tagline b {
+  color: var(--accent);
+  font-style: normal;
+  font-weight: 700;
 }
 
 .chip {
@@ -96,11 +135,13 @@ h3,
   font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
 }
 .chip.active {
   background: var(--pitch);
   color: var(--pitch-ink);
   border-color: var(--pitch);
+  box-shadow: 0 2px 8px var(--shadow);
 }
 
 .badge-club {
@@ -123,6 +164,10 @@ h3,
   font-weight: 600;
   font-size: 14px;
   cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+.btn:hover:not(:disabled) {
+  transform: translateY(-1px);
 }
 .btn.ghost {
   background: transparent;
@@ -133,10 +178,35 @@ h3,
   background: var(--accent);
   border-color: var(--accent);
   color: var(--accent-ink);
+  box-shadow: 0 4px 14px var(--accent-glow);
+}
+.btn.accent:hover:not(:disabled) {
+  filter: brightness(1.06);
 }
 .btn:disabled {
   opacity: 0.6;
   cursor: default;
+}
+
+.stat-tile {
+  position: relative;
+  overflow: hidden;
+}
+.stat-tile::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: var(--accent);
+}
+
+button.card {
+  cursor: pointer;
+}
+button.card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 8px 24px var(--shadow);
+  transform: translateY(-1px);
 }
 
 .choice {

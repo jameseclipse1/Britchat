@@ -22,8 +22,11 @@ export default async function AppLayout({ children }: { children: React.ReactNod
         style={{ background: "var(--paper)", borderBottom: "1px solid var(--line)" }}
       >
         <div className="flex items-baseline justify-between gap-3 flex-wrap">
-          <h1 className="text-2xl flex items-baseline gap-2 m-0">
+          <h1 className="text-2xl flex items-baseline gap-2.5 m-0">
             BritChat<span style={{ color: "var(--badge-red)" }}>.</span>
+            <span className="tagline text-xs hidden sm:inline" style={{ letterSpacing: 0 }}>
+              chat like a <b>brit</b>
+            </span>
           </h1>
           <div className="text-xs" style={{ color: "var(--muted)" }}>
             Signed in as <b style={{ color: "var(--ink)" }}>{profile?.display_name ?? "..."}</b>
